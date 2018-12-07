@@ -1,3 +1,9 @@
+"""currency.py: To convert one currency into another at an exchange rate.
+__author__ = "Zhang Tianyu"
+__pkuid__  = "1800011759"
+__email__  = "1800011759@pku.edu.cn"
+"""
+
 import turtle
 
 def tile(m,n,a,b,alls=[],l=0,i=0,lst=[],ans=[]):
@@ -8,7 +14,8 @@ def tile(m,n,a,b,alls=[],l=0,i=0,lst=[],ans=[]):
     i is a int:current colume
     lst is a list:stores the laying of wall
     ans is a list:stores the coordinates of existing bricks
-    return alls is a list:solution of this question'''
+    return alls is a list:solution of this question
+    '''
     if lst==[]:
         lst=[0]*(m*n)
     if i==m:
@@ -38,7 +45,8 @@ def record(m,a,b,l,i,ls,an):
     i is a int:current colume
     ls is a list:stores the laying of wall
     an is a list:stores the coordinates of existing bricks
-    return an is a list:add a coordinates of newly laid bricks to an'''
+    return an is a list:add a coordinates of newly laid bricks to an
+    '''
     re=()
     for j in range(l,l+b):
         for k in range(i,i+a):
@@ -54,7 +62,8 @@ def query(m,n,a,b,l,i,lst):
     l is a int:current row
     i is a int:current colume
     lst is a list:stores the laying of wall
-    return a bool:False for occupy,True for vacancy'''
+    return a bool:False for occupy,True for vacancy
+    '''
     if (i+a)>m or (l+b)>n:
         return False
     for j in range(l,l+b):
@@ -68,7 +77,8 @@ def visualization(m,n,solution,z):
     m,n are int:size of wall
     solution in a list:all of the solution
     z is a int:the solution chosen by the user
-    return a screen:displays the graph of the solution'''
+    return a screen:displays the graph of the solution
+    '''
     alex = turtle.Turtle()
     ms=m*30
     ns=n*30
@@ -90,7 +100,8 @@ def visualization(m,n,solution,z):
     
 
 def main():    
-    '''the main modle'''
+    '''the main modle
+    '''
     wall=input('请输入墙的尺寸(形如3*2)：',).split('*')
     brick=input('请输入砖的尺寸(形如2*1)：',).split('*')
     m=int(wall[0])
