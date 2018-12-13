@@ -14,28 +14,28 @@ def tile(m,n,a,b,alls=[],l=0,i=0,lst=[],ans=[]):
     i is a int:current colume
     lst is a list:stores the laying of wall
     ans is a list:stores the coordinates of existing bricks
-    return alls is a list:solution of this question
-    '''
+    return alls is a list:solution of this question'''
     if lst==[]:
         lst=[0]*(m*n)
     if i==m:
         l+=1
         i=0
-    if (0 not in lst) and (ans not in alls):
+    if 0 not in lst:
         alls.append(ans[:])
-    if ((l*m)+i)<(m*n) and lst[l*m+i]==1:
-        tile(m,n,a,b,alls,l,i+1,lst,ans)
     else:
-        if query(m,n,a,b,l,i,lst):
-            ls=lst[:]
-            an=ans[:]
-            record(m,a,b,l,i,ls,an)
-            tile(m,n,a,b,alls,l,i+1,ls,an)
-        if query(m,n,b,a,l,i,lst):
-            ls=lst[:]
-            an=ans[:]
-            record(m,b,a,l,i,ls,an)
-            tile(m,n,a,b,alls,l,i+1,ls,an)
+        if ((l*m)+i)<(m*n) and lst[l*m+i]==1:
+            tile(m,n,a,b,alls,l,i+1,lst,ans)
+        else:
+            if query(m,n,a,b,l,i,lst):
+                ls=lst[:]
+                an=ans[:]
+                record(m,a,b,l,i,ls,an)
+                tile(m,n,a,b,alls,l,i+1,ls,an)
+            if query(m,n,b,a,l,i,lst):
+                ls=lst[:]
+                an=ans[:]
+                record(m,b,a,l,i,ls,an)
+                tile(m,n,a,b,alls,l,i+1,ls,an)
             
 def record(m,a,b,l,i,ls,an):
     '''Record the coordinates of the bricks and the laying of wall
@@ -45,8 +45,7 @@ def record(m,a,b,l,i,ls,an):
     i is a int:current colume
     ls is a list:stores the laying of wall
     an is a list:stores the coordinates of existing bricks
-    return an is a list:add a coordinates of newly laid bricks to an
-    '''
+    return an is a list:add a coordinates of newly laid bricks to an'''
     re=()
     for j in range(l,l+b):
         for k in range(i,i+a):
@@ -62,8 +61,7 @@ def query(m,n,a,b,l,i,lst):
     l is a int:current row
     i is a int:current colume
     lst is a list:stores the laying of wall
-    return a bool:False for occupy,True for vacancy
-    '''
+    return a bool:False for occupy,True for vacancy'''
     if (i+a)>m or (l+b)>n:
         return False
     for j in range(l,l+b):
@@ -77,8 +75,7 @@ def visualization(m,n,solution,z):
     m,n are int:size of wall
     solution in a list:all of the solution
     z is a int:the solution chosen by the user
-    return a screen:displays the graph of the solution
-    '''
+    return a screen:displays the graph of the solution'''
     alex = turtle.Turtle()
     ms=m*30
     ns=n*30
@@ -100,8 +97,7 @@ def visualization(m,n,solution,z):
     
 
 def main():    
-    '''the main modle
-    '''
+    '''the main modle'''
     wall=input('请输入墙的尺寸(形如3*2)：',).split('*')
     brick=input('请输入砖的尺寸(形如2*1)：',).split('*')
     m=int(wall[0])
