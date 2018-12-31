@@ -1,3 +1,15 @@
+"""currency.py: To convert one currency into another at an exchange rate.
+
+
+
+__author__ = "Zhang Tianyu"
+
+__pkuid__  = "1800011759"
+
+__email__  = "1800011759@pku.edu.cn"
+
+"""
+
 import sys
 from urllib.request import urlopen
 
