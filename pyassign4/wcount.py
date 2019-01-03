@@ -10,27 +10,33 @@ from urllib.request import urlopen
 def wcount(lines, topn):
 
     """count words from lines of text string, then sort by their counts
-
     in reverse order, output the topn (word count), each in one line. 
-
+    lines is a str:from the file
+    topn is a str:N of the highest frequency
     """
-    strlst = []
-    symbols = [',','.',"'",'"',':','!','?','\r\n']
+    strlist=[]
+    symbols=['\r\n',',','.',':','"','!','?',"'"]
     for line in lines:
-        originalstr = line.decode().lower()
-        strs = ' '+originalstr+' '
-        strlst.extend([strs.replace(sym,' ') for sym in symbols])          
-    words = [s.split() for s in strlst]   
-    word = list(set(words))           
-    countlst = [word.count(w) for w in word]
-    sortlst = zip(word,countlst)
-    sortlst.sort(key=lambda v:v[1],reverse=True)  
-    worddic = {}
-    for w in sortlst:
-        worddic[w[0]] = w[1]
-    mmax = max(int(topn),len(word))
-    for i in range(mmax):
-            print(sortlst[i][0]+' ',dic[sortlst[i][0]])
+        string0=line.decode().lower()
+        string=' '+string0+' '
+        for symbol in symbols:
+            string=string.replace(symbol,' ')
+        strlist.append(string)          
+    all_words=[]
+    for i in strlist:
+        all_words.append(i.split())  
+    words=list(set(all_words))           
+    countlist=[]
+    for word in words:
+        countlist=countlist+[all_words.count(word)]    
+    ziplist=zip(words,countlist)
+    sortlist=sorted(ziplist,key=lambda i:i[1],reverse=True)  
+    dic={}
+    for item in sortlist:
+        dic[item[0]]=item[1]
+    maxl=max(int(topn,len(words)))
+    for i in range(maxl):
+        print(sortlist[i][0]+' ',dic[sortlist[i][0]])
     pass
 
 def main():
